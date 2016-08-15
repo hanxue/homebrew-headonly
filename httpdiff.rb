@@ -8,8 +8,7 @@ class Httpdiff < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-o", "httpdiff"
-    bin.install "httpdiff"
+    system "go", "build", "-o", "#{bin}/httpdiff"
   end
 
   test do
