@@ -1,4 +1,5 @@
 class Adept < Formula
+  desc "Adaptive JPG Compressor"
   homepage "https://github.com/technopagan/adept-jpg-compressor"
   head "https://github.com/technopagan/adept-jpg-compressor.git"
 
