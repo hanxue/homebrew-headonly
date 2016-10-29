@@ -1,38 +1,33 @@
 class Sigar < Formula
+  desc "System Information Gatherer And Reporter"
+  homepage "http://sigar.hyperic.com/"
   # HEAD has up to date bindings that are actually useful.
   head "https://github.com/hyperic/sigar.git"
-  homepage "http://sigar.hyperic.com/"
 
-  option "perl", "Build Perl bindings"
-  option "python", "Build Python bindings"
-  option "ruby", "Build Ruby bindings"
+  option "with-perl", "Build Perl bindings"
+  option "with-python", "Build Python bindings"
+  option "with-ruby", "Build Ruby bindings"
 
-  def java_script; <<-EOS.undent
-    #!/bin/sh
-    # Runs SIGAR's REPL.
-    java -jar #{prefix}/sigar.jar
-    EOS
-  end
+  deprecated_option "perl" => "with-perl"
+  deprecated_option "python" => "with-python"
+  deprecated_option "ruby" => "with-ruby"
 
   def install
     # Build Java JAR & C library first.
     cd "bindings/java" do
       system "ant"
 
-      cd "sigar-bin/lib" do
-        prefix.install "sigar.jar"
-        lib.install Dir["*.dylib"]
-      end
-
+      prefix.install "sigar-bin/lib/sigar.jar"
+      lib.install Dir["sigar-bin/lib/*.dylib"]
       include.install Dir["sigar-bin/include/*"]
 
-      (bin/"sigar").write java_script
+      bin.write_jar_script prefix/"sigar.jar", "sigar"
     end
 
     # Install Python bindings
     cd "bindings/python" do
       system "python", "setup.py", "install", "--prefix=#{prefix}"
-    end if build.include? "python"
+    end if build.with? "python"
 
     # Install Perl bindings
     cd "bindings/perl" do
@@ -54,12 +49,12 @@ class Sigar < Formula
       end
 
       system "make", "install"
-    end if build.include? "perl"
+    end if build.with? "perl"
 
     # Install Ruby bindings
     cd "bindings/ruby" do
       system "ruby", "extconf.rb", "--prefix=#{prefix}"
       system "make", "install"
-    end if build.include? "ruby"
+    end if build.with? "ruby"
   end
 end
