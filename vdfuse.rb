@@ -5,7 +5,7 @@ class VirtualBoxInstalled < Requirement
     [
       "/Applications/VirtualBox.app",
       "#{ENV["HOME"]}/Applications/VirtualBox.app",
-      ENV["VIRTUALBOX_APP"]
+      ENV["VIRTUALBOX_APP"],
     ].find { |dir| dir && File.exist?("#{dir}/Contents/MacOS/VBoxDD.dylib") }
   end
 
@@ -21,6 +21,7 @@ class VirtualBoxInstalled < Requirement
 end
 
 class Vdfuse < Formula
+  desc "Fuse driver to mount VirtualBox compatible disk images"
   homepage "https://github.com/SophosLabs/vdfuse"
   head "https://github.com/SophosLabs/vdfuse.git"
 
@@ -35,7 +36,7 @@ class Vdfuse < Formula
     configure_opts = [
       "--disable-dependency-tracking",
       "--disable-silent-rules",
-      "--prefix=#{prefix}"
+      "--prefix=#{prefix}",
     ]
 
     osxfuse = Formula["osxfuse"]
