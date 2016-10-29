@@ -1,6 +1,7 @@
 class Libgarmin < Formula
-  head "http://libgarmin.svn.sourceforge.net/svnroot/libgarmin/libgarmin/dev/"
+  desc "C library to parse and use Garmin image files"
   homepage "http://libgarmin.sourceforge.net/"
+  head "http://libgarmin.svn.sourceforge.net/svnroot/libgarmin/libgarmin/dev/"
 
   def rewrite_version
     File.open("version.h", "w") { |f| f.puts "#define LIBVERSION \"libgarmin 0.1\"" }
@@ -13,7 +14,7 @@ class Libgarmin < Formula
     # Fix OS X include
     inreplace Dir["{src,utils}/*.c"], "#include <malloc.h>", "#include <stdlib.h>"
 
-    # The code for creating 'verison.h' doesn't work on OS X.
+    # The code for creating 'version.h' doesn't work on OS X.
     inreplace "Makefile" do |s|
       s.change_make_var! "BUILT_SOURCES", ""
     end
