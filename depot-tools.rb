@@ -10,19 +10,17 @@ class DepotTools < Formula
   # Chromium team isn't nice enough to tag releases for us.
   def install
     (prefix/"tools").install Dir["*"]
-    %w[annotated_gclient.py apply_issue apply_issue.bat
+    %w[annotated_gclient.py apply_issue
        apply_issue.py buildbucket.py
-       chrome-update-create-task.bat chrome-update.bat
-       chrome-update.py cit cit.bat cit.py clang-format
-       clang_format.py commit_queue commit_queue.bat
+       chrome-update.py cit cit.py clang-format
+       clang_format.py commit_queue
        commit_queue.py cpplint.py cpplint_chromium.py
-       create-chromium-git-src create-ntfs-junction.exe
+       create-chromium-git-src
        dart_format.py depot-tools-auth depot-tools-auth.py
        download_from_google_storage
-       download_from_google_storage.bat
        download_from_google_storage.py drover drover.py fetch
-       fetch.bat fetch.py gcl gcl.bat gcl.py gclient
-       gclient-new-workdir.py gclient.bat gclient.py
+       fetch.py gcl gcl.py gclient
+       gclient-new-workdir.py gclient.py
        gclient_completion.sh gerrit_util.py git-auto-svn
        git-cache git-cherry-pick-upload git-cl git-crrev-parse
        git-crsync git-drover git-find-releases git-footers
@@ -40,12 +38,12 @@ class DepotTools < Formula
        git_rename_branch.py git_reparent_branch.py git_retry.py
        git_squash_branch.py git_try.py git_upstream_diff.py gn
        gn.py gsutil.py my_activity.py my_reviews.py ninja
-       ninja-linux32 ninja-linux64 ninja-mac ninja.exe
+       ninja-mac
        presubmit_support.py pylint pylint.py python_runner.sh
-       recipes.py repo roll-dep roll-dep-svn roll-dep-svn.bat
-       roll-dep.bat roll_dep.py roll_dep_svn.py setup_color.py
+       recipes.py roll-dep
+       roll_dep.py roll_dep_svn.py setup_color.py
        trychange.py update_depot_tools
-       upload_to_google_storage.py WATCHLISTS watchlists.py
+       upload_to_google_storage.py watchlists.py
        weekly wtf].each do |tool|
       (bin/tool).write <<-EOS.undent
         #!/bin/bash
