@@ -3,7 +3,7 @@ class GitHg < Formula
   homepage "http://offbytwo.com/git-hg/"
   head "https://github.com/cosmin/git-hg.git"
 
-  depends_on :hg
+  depends_on "mercurial"
 
   def install
     prefix.install Dir["*"]
